@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Resume | Professional Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0c0c0c;
+            --card-bg: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-gradient: linear-gradient(90deg, #7928ca, #ff0080);
+            --font-main: 'Outfit', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 4rem 0 2rem;
+        }
+
+        .profile-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .btn-icon {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Sections */
+        .section {
+            margin: 4rem 0;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        .about p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+        }
+
+        /* Skills */
+        .skill-container {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            background: var(--card-bg);
+            padding: 1.25rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--c), var(--g));
+            transform: translateX(-100%);
+            animation: slideIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        /* Experience / Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-item {
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -1.5rem;
+            /* center on line: -1.5rem (padding) - 1px (border width) + roughly half dot width */
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--bg-color);
+            border: 2px solid #7928ca;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px rgba(121, 40, 202, 0.5);
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .date {
+            font-size: 0.85rem;
+            color: #ff0080;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .company {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .timeline-content p:last-child {
+            font-size: 0.95rem;
+            color: #d0d0d0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding-top: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Animations */
+        .slide-in-top {
+            animation: slideTop 0.8s ease-out forwards;
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes slideTop {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .profile-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .timeline {
+                padding-left: 1rem;
+            }
+
+            .timeline-dot {
+                left: -1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header slide-in-top">
+            <div class="profile-header">
+                <h1>Vimukthi <span class="highlight">Lakshan</span></h1>
+                <p class="subtitle">BIT (Hons) Undergraduate | Networking & Mobile Computing</p>
+                <div class="social-links">
+                    <a href="#" class="btn-icon">GitHub</a>
+                    <a href="#" class="btn-icon">LinkedIn</a>
+                    <a href="#" class="btn-icon">Email</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- About Section -->
+        <section class="about section fade-in">
+            <h2>About Me</h2>
+            <p>
+                I am a final-year undergraduate at Horizon Campus, pursuing a degree in BIT (Hons) Networking and Mobile
+                Computing.
+                I have a strong interest in network design, configuration, monitoring, and security.
+                Passionate about problem-solving, ensuring reliable network performance, and exploring emerging
+                technologies in cloud and mobile networks.
+            </p>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills section fade-in">
+            <h2>Technical Skills</h2>
+            <div class="skill-container">
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Networking (Design, Security, Monitoring)</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 90%; --c: #ff4d4d; --g: #f9cb28;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Mobile & Web Dev (Kotlin, PHP, HTML/CSS)</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%; --c: #7928ca; --g: #ff0080;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Programming (Python, C++, C)</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 80%; --c: #007cf0; --g: #00dfd8;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Database (MySQL, SQL)</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%; --c: #ff4d4d; --g: #f9cb28;"></div>
+                    </div>
+                </div>
+                <!-- Additional Skills as tags or list below if needed, but bars are good for top skills -->
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Linux & Office 365</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%; --c: #7928ca; --g: #ff0080;"></div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 1.5rem; text-align: center; color: var(--text-secondary);">
+                <p><strong>Soft Skills:</strong> Problem-solving, Teamwork, Leadership</p>
+            </div>
+        </section>
+
+        <!-- Experience/Education Section -->
+        <section class="experience section fade-in">
+            <h2>Education & Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content card">
+                        <span class="date">Present</span>
+                        <h3>BSc (Hons) in Information Technology</h3>
+                        <p class="company">Horizon Campus</p>
+                        <p>Specializing in Networking and Mobile Computing. Focusing on network security, design, and
+                            reliable performance.</p>
+                    </div>
+                </div>
+                <!-- Add more items if user provides them -->
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2025 Vimukthi Lakshan.</p>
+        </footer>
+    </div>
+</body>
+
+</html> 
+
