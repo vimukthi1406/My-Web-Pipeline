@@ -1,8 +1,22 @@
-environment {
-    // 1. Use your real Docker Hub username
-    // 2. Use any name you like for the app (e.g., my-first-web)
-    DOCKER_IMAGE = "vimukthi1406/my-first-web:latest"
-    
-    // This is the ID you created in Jenkins settings earlier
-    DOCKER_HUB_CREDS = "docker-hub-credentials-id" 
+pipeline {
+    agent any
+    environment {
+        DOCKER_IMAGE = "vimukthi1406/my-first-web:latest"
+        DOCKER_HUB_CREDS = "docker-hub-credentials-id" 
+    }
+    stages {
+        stage('Checkout') {
+            steps { checkout scm }
+        }
+        stage('Build Docker Image') {
+            steps { sh "docker build -t ${DOCKER_IMAGE} ." }
+        }
+        stage('Deploy') {
+            steps {
+                sh "docker stop my-web-container || true"
+                sh "docker rm my-web-container || true"
+                sh "docker run -d --name my-web-container -p 8081:80 ${DOCKER_IMAGE}"
+            }
+        }
+    }
 }
