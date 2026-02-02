@@ -11,6 +11,14 @@ pipeline {
         stage('Build Docker Image') {
             steps { sh "docker build -t ${DOCKER_IMAGE} ." }
         }
+        stage('Push to Docker Hub') {
+            steps {
+                // withDockerRegistry handles the 'docker login' for you
+                withDockerRegistry([credentialsId: "${DOCKER_HUB_CREDS}", url: ""]) {
+                    sh "docker push ${DOCKER_IMAGE}"
+                }
+            }
+        }
         stage('Deploy') {
             steps {
                 sh "docker stop my-web-container || true"
