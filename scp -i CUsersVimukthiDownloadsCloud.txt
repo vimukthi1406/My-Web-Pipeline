@@ -1,1 +1,0 @@
-scp -i "C:\Users\Vimukthi\Downloads\CloudLabKey.ppk" "C:\path\to\your\index.html" ec2-user@3.90.207.221:/var/www/html/
