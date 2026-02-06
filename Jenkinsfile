@@ -1,19 +1,25 @@
 pipeline {
     agent any
     environment {
+        // Updated to your Docker Hub username
         DOCKER_IMAGE = "vimukthi01/my-first-web:latest"
+        // This must match the ID in Jenkins -> Credentials
         DOCKER_HUB_CREDS = "docker-hub-credentials-id" 
     }
     stages {
         stage('Checkout') {
-            steps { checkout scm }
+            steps { 
+                checkout scm 
+            }
         }
         stage('Build Docker Image') {
-            steps { sh "docker build -t ${DOCKER_IMAGE} ." }
+            steps { 
+                sh "docker build -t ${DOCKER_IMAGE} ." 
+            }
         }
         stage('Push to Docker Hub') {
             steps {
-                // withDockerRegistry handles the 'docker login' for you
+                // This logs into Docker Hub as vimukthi01
                 withDockerRegistry([credentialsId: "${DOCKER_HUB_CREDS}", url: ""]) {
                     sh "docker push ${DOCKER_IMAGE}"
                 }
