@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = "vimukthi1406/my-first-web:latest"
+        DOCKER_IMAGE = "vimukthi01/my-first-web:latest"
         DOCKER_HUB_CREDS = "docker-hub-credentials-id" 
     }
     stages {
